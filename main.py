@@ -74,5 +74,8 @@ def main():
     response = submit_sitemap(service, site_url, sitemap_url)
     print(json.dumps(response))
 
+#Print the port number before starting Flask app
+print(f"Starting server on port {int(os.environ.get('PORT', 8000))}")
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8000)))
