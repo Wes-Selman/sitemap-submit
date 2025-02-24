@@ -1,6 +1,6 @@
-flask==3.1.0
-google-cloud-secret-manager==2.23.1
-google-auth==2.38.0
-google-auth-oauthlib==1.2.1
-google-auth-httplib2==0.2.0
-google-api-python-client==2.161.0
+flask
+google-cloud-secret-manager
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
