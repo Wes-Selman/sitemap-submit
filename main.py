@@ -7,7 +7,6 @@ import os
 from flask import Flask
 
 app = Flask(__name__)
-@app.route('/')
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
@@ -45,6 +44,7 @@ def submit_sitemap(service, site_url, sitemap_url):
         logging.error(f'Failed to submit sitemap: {str(e)}')
         return {'status': 'error', 'message': str(e)}
 
+@app.route('/')
 def main():
     logging.info('Script started')
 
