@@ -3,6 +3,7 @@ from google.cloud import secretmanager
 import json
 from google.oauth2 import service_account
 import googleapiclient.discovery
+import os
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
