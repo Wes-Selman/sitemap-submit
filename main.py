@@ -72,7 +72,7 @@ def main():
     print(json.dumps(response))
 
 # Print the port number before starting the Flask app
-print(f"Starting server on port {int(os.environ.get('PORT', 8000))}")
+print(f"Starting server on port {int(os.environ.get('PORT', 8080))}")
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8000)))
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
