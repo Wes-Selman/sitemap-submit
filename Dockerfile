@@ -16,8 +16,8 @@ COPY . .
 # Ensure the .env file is included in the Docker image
 COPY .env .env
 
-# Make port 8000 available outside this container
-EXPOSE 8000
+# Make port 8080 available outside this container
+EXPOSE 8080
 
 # Run main.py when the container launches
 CMD ["python", "main.py"]
