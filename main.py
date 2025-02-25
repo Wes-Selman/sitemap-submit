@@ -1,7 +1,7 @@
 import logging
 from google.cloud import secretmanager
 import json
-import google.auth
+from google.oauth2 import service_account
 import googleapiclient.discovery
 import os
 from flask import Flask
@@ -60,9 +60,12 @@ def main():
     service_account_key = get_secret(secret_id, project_id)
     logging.debug('Client secret obtained')
 
-    # Use ADC for authentication
-    credentials, project = google.auth.default(scopes=SCOPES)
-    logging.debug('ADC credentials obtained')
+    # Use the service account key for authentication
+    service_account_info = json.loads(service_account_key)
+    credentials = service_account.Credentials.from_service_account_info(
+        service_account_info, scopes=SCOPES, subject=servicedelegate
+    )
+    logging.debug('Credentials obtained')
 
     # Build the Google Search Console service
     service = build_service(credentials)
@@ -72,7 +75,7 @@ def main():
     print(json.dumps(response))
 
 # Print the port number before starting the Flask app
-print(f"Starting server on port {int(os.environ.get('PORT', 8080))}")
+print(f"Starting server on port {int(os.environ.get('PORT', 8000))}")
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8000)))
