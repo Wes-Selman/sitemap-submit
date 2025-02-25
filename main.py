@@ -5,6 +5,10 @@ from google.oauth2 import service_account
 import googleapiclient.discovery
 import os
 from flask import Flask, jsonify
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -48,12 +52,12 @@ def submit_sitemap(service, site_url, sitemap_url):
 def main():
     logging.info('Script started')
 
-    # Parameters
-    project_id = 'budulup-website'
-    secret_id = 'serviceaccount'
-    site_url = 'https://www.budulup.com/'
-    sitemap_url = 'https://www.budulup.com/sitemap.xml'
-    servicedelegate = 'wes@budulup.com'
+    # Parameters from environment variables
+    project_id = os.getenv('PROJECT_ID')
+    secret_id = os.getenv('SECRET_ID')
+    site_url = os.getenv('SITE_URL')
+    sitemap_url = os.getenv('SITEMAP_URL')
+    servicedelegate = os.getenv('SERVICEDELEGATE')
     SCOPES = ['https://www.googleapis.com/auth/webmasters']
 
     # Fetch the service account key from Google Secret Manager
@@ -74,7 +78,7 @@ def main():
     response = submit_sitemap(service, site_url, sitemap_url)
     print(json.dumps(response))
 
-    #return respones as json
+    # Return response as JSON
     return jsonify(response)
 
 # Print the port number before starting the Flask app
