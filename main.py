@@ -4,7 +4,7 @@ import json
 from google.oauth2 import service_account
 import googleapiclient.discovery
 import os
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -73,6 +73,9 @@ def main():
     # Submit the sitemap
     response = submit_sitemap(service, site_url, sitemap_url)
     print(json.dumps(response))
+
+    #return respones as json
+    return jsonify(response)
 
 # Print the port number before starting the Flask app
 print(f"Starting server on port {int(os.environ.get('PORT', 8080))}")
